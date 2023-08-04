@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>{{title$| async}}</h1>
+  <p>{{info$ | async}}</p>
+
+  <ag-grid-angular class="ag-theme-alpine" rowSelection="multiple" [rowData]="rowData" [gridOptions]="gridOptions">
+  </ag-grid-angular>
+
+</div>
+

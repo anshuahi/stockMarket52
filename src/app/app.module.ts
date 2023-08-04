@@ -10,6 +10,9 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchDetailComponent } from './components/search-detail/search-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
+import { StockDetailGridComponent } from './components/my-grid/stock-detail-grid/stock-detail-grid.component';
 
 @NgModule({
   declarations: [
@@ -19,15 +22,18 @@ import { SearchDetailComponent } from './components/search-detail/search-detail.
     Low52Component,
     HomeComponent,
     SearchComponent,
-    SearchDetailComponent
+    SearchDetailComponent,
+    StockDetailGridComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    AgGridModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
