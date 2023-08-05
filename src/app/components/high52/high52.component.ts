@@ -1,27 +1,23 @@
 import { Component } from '@angular/core';
-import {
-  ColDef,
-  GridApi,
-  GridOptions,
-  GridReadyEvent,
-} from 'ag-grid-community';
-import { BehaviorSubject } from 'rxjs';
-import { StockData } from 'src/app/app.component';
-import { StockMarketDataServiceService } from 'src/app/services/stock-market-data-service.service';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   selector: 'app-high52',
   template: `
-  <app-stock-detail-grid [gridOptions]="gridOptions" [trend]="trend"></app-stock-detail-grid>
+    <app-stock-detail-grid
+      [gridOptions]="gridOptions"
+      [trend]="trend"
+    ></app-stock-detail-grid>
   `,
 })
 export class High52Component {
   gridOptions: GridOptions = {
     columnDefs: [
+      { checkboxSelection: true, maxWidth: 50 },
       {
         headerName: 'Company',
-        field: 'companyShortName',
-        width: 120,
+        field: 'companyName2',
+        width: 150,
       },
       {
         headerName: 'Current Price',
@@ -34,13 +30,14 @@ export class High52Component {
         width: 100,
       },
       {
-        headerName: 'Best Quantity',
+        headerName: 'Buy Quantity',
         field: 'bestBuyQty',
         width: 120,
       },
     ],
-    defaultColDef:{
+    defaultColDef: {
       resizable: true,
+      minWidth: 70,
     },
     enableRangeSelection: true,
     suppressCopyRowsToClipboard: true,
@@ -48,5 +45,4 @@ export class High52Component {
   };
 
   trend = 'near52weekshigh';
-
 }

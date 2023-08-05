@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GridOptions } from 'ag-grid-community';
+import { GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject } from 'rxjs';
 import { StockMarketDataServiceService } from 'src/app/services/stock-market-data-service.service';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-stock-detail-grid',
@@ -18,11 +19,15 @@ export class StockDetailGridComponent implements OnInit {
   info$ = this.infoSubject.asObservable();
 
   public rowData: any[] = [];
+  private gridApi!: GridApi<any>;
 
   constructor(
     private dataService: StockMarketDataServiceService,
+    private clipboard: ClipboardService
   ) {}
+
   ngOnInit(): void {
+
     this.rowData = [];
     this.dataService.get52WeekData(this.trend).subscribe((data: any) => {
       console.log(data);
@@ -31,5 +36,30 @@ export class StockDetailGridComponent implements OnInit {
 
       this.rowData = data.searchresult;
     });
+  }
+
+  onBtCopyRows() {
+    const selectedData = this.gridApi.getSelectedRows();
+    console.log(selectedData);
+    let str = '';
+    this.gridOptions?.columnDefs?.forEach((a: any) => {
+      if (a.headerName) {
+        str = str + a.headerName + '\t';
+      }
+    });
+    str = str + '\n';
+    selectedData.forEach((element) => {
+      this.gridOptions?.columnDefs?.forEach((a: any) => {
+        if (a.headerName) {
+          str = str + element[a?.field] + '\t';
+        }
+      });
+      str = str + '\n';
+    });
+    this.clipboard.copy(str);
+  }
+
+  onGridReady(params: GridReadyEvent<any>) {
+    this.gridApi = params.api;
   }
 }

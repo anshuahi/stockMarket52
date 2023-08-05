@@ -13,6 +13,7 @@ import { SearchDetailComponent } from './components/search-detail/search-detail.
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { StockDetailGridComponent } from './components/my-grid/stock-detail-grid/stock-detail-grid.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StockDetailGridComponent } from './components/my-grid/stock-detail-grid
     ReactiveFormsModule,
     HttpClientModule,
     AgGridModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,8 +2,18 @@
   <h1>{{title$| async}}</h1>
   <p>{{info$ | async}}</p>
 
-  <ag-grid-angular class="ag-theme-alpine" rowSelection="multiple" [rowData]="rowData" [gridOptions]="gridOptions">
+  <button (click)="onBtCopyRows()">Copy Selected Rows</button>
+
+  <ag-grid-angular
+    class="ag-theme-alpine"
+    rowSelection="multiple"
+    [rowMultiSelectWithClick]="true"
+    [enableRangeSelection]="true"
+    [rowData]="rowData"
+    [gridOptions]="gridOptions"
+    [copyHeadersToClipboard]="true"
+    [suppressCutToClipboard]="true"
+    (gridReady)="onGridReady($event)">
   </ag-grid-angular>
 
 </div>
-

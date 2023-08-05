@@ -21,6 +21,7 @@
     "ag-grid-angular": "^30.0.6",
     "ag-grid-community": "^30.0.6",
     "bootstrap": "^5.3.1",
+    "ngx-clipboard": "^16.0.0",
     "ngx-spinner": "^16.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

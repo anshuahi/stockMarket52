@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component } from '@angular/core';
-import { ColDef, GridApi, GridOptions, GridReadyEvent, IRowNode } from 'ag-grid-community';
-import { BehaviorSubject } from 'rxjs';
-import { StockData } from 'src/app/app.component';
-import { StockMarketDataServiceService } from 'src/app/services/stock-market-data-service.service';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   selector: 'app-low52',
@@ -17,8 +14,8 @@ export class Low52Component {
     columnDefs: [
       {
         headerName: 'Company',
-        field: 'companyShortName',
-        width: 120,
+        field: 'companyName2',
+        width: 150,
       },
       {
         headerName: 'Current Price',
@@ -26,21 +23,23 @@ export class Low52Component {
         width: 100,
       },
       {
-        headerName: 'Buy Price',
-        field: 'bestBuyPrice',
+        headerName: 'Sell Price',
+        field: 'bestSellPrice',
         width: 100,
       },
       {
-        headerName: 'Best Quantity',
-        field: 'bestBuyQty',
+        headerName: 'Sell Quantity',
+        field: 'bestSellQty',
         width: 120,
       },
     ],
     defaultColDef:{
       resizable: true,
+      minWidth: 80,
     },
     enableRangeSelection: true,
     suppressCopyRowsToClipboard: true,
+    suppressCopySingleCellRanges: true,
     copyHeadersToClipboard: true,
   };
   trend = 'near52weekslow';
